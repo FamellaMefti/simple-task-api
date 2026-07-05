@@ -1,0 +1,254 @@
+:root {
+  --navy: #141b26;
+  --navy-deep: #0d131b;
+  --paper: #f3efe4;
+  --paper-dim: #e6e1d2;
+  --ink: #1c1f1a;
+  --amber: #e0a03a;
+  --amber-dim: #a97a2c;
+  --teal: #3f8f83;
+  --red: #c1503f;
+  --line: rgba(20, 27, 38, 0.14);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% -10%, rgba(224, 160, 58, 0.10), transparent 45%),
+    var(--navy-deep);
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 20px 24px;
+}
+
+.deck {
+  width: 100%;
+  max-width: 620px;
+}
+
+.deck__header {
+  margin-bottom: 28px;
+  color: var(--paper);
+}
+
+.deck__eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+
+.deck__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.deck__sub {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgba(243, 239, 228, 0.62);
+  max-width: 46ch;
+  margin: 0;
+}
+
+/* ---------- Add form ---------- */
+
+.add-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.add-form__input {
+  flex: 1;
+  padding: 13px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(243, 239, 228, 0.16);
+  background: rgba(243, 239, 228, 0.06);
+  color: var(--paper);
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.add-form__input::placeholder { color: rgba(243, 239, 228, 0.35); }
+
+.add-form__input:focus {
+  border-color: var(--amber);
+  background: rgba(243, 239, 228, 0.1);
+}
+
+.add-form__btn {
+  padding: 0 20px;
+  border-radius: 8px;
+  border: none;
+  background: var(--amber);
+  color: var(--navy-deep);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.add-form__btn:hover { background: #ecb459; }
+.add-form__btn:active { transform: scale(0.97); }
+
+/* ---------- Tickets ---------- */
+
+.tickets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ticket {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--paper);
+  border-radius: 10px;
+  padding: 16px 18px 16px 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+  animation: rise 0.28s ease both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* perforation notch, like a torn ticket stub */
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--navy-deep);
+  border-radius: 50%;
+  left: -8px;
+}
+.ticket::before { top: -8px; }
+.ticket::after { bottom: -8px; }
+
+.ticket__stamp {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--amber-dim);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.ticket__stamp svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.ticket.is-done .ticket__stamp {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+.ticket.is-done .ticket__stamp svg { opacity: 1; }
+
+.ticket__id {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--amber-dim);
+  min-width: 34px;
+}
+
+.ticket__title {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.ticket.is-done .ticket__title {
+  text-decoration: line-through;
+  color: rgba(28, 31, 26, 0.4);
+}
+
+.ticket__delete {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: rgba(28, 31, 26, 0.32);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ticket__delete:hover {
+  color: var(--red);
+  background: rgba(193, 80, 63, 0.1);
+}
+
+/* ---------- States ---------- */
+
+.empty-state,
+.error-state {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(243, 239, 228, 0.5);
+  padding: 32px 12px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.error-state { color: #e08b7d; }
+
+/* ---------- Footer ---------- */
+
+.footer {
+  margin-top: auto;
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: rgba(243, 239, 228, 0.4);
+}
+
+.footer__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber-dim);
+}
+
+.footer__dot.is-ok { background: var(--teal); }
+.footer__dot.is-error { background: var(--red); }
+
+@media (max-width: 480px) {
+  .deck__title { font-size: 32px; }
+  .add-form { flex-direction: column; }
+  .add-form__btn { padding: 12px; }
+}

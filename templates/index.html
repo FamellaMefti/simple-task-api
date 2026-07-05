@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Task API</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="deck">
+    <header class="deck__header">
+      <div class="deck__eyebrow">SIMPLE TASK API &middot; RUNNING IN CONTAINER</div>
+      <h1 class="deck__title">Task Manifest</h1>
+      <p class="deck__sub">Setiap task di bawah adalah satu tiket. Centang untuk menandai selesai, atau tarik keluar dengan tombol hapus.</p>
+    </header>
+
+    <form id="add-form" class="add-form">
+      <input id="add-input" class="add-form__input" type="text" placeholder="Tulis task baru…" autocomplete="off" required>
+      <button type="submit" class="add-form__btn">+ Tambah</button>
+    </form>
+
+    <ul id="ticket-list" class="tickets"></ul>
+
+    <p id="empty-state" class="empty-state" hidden>Belum ada task. Semua beres — atau belum dimulai. Tambahkan satu di atas.</p>
+    <p id="error-state" class="error-state" hidden>Tidak bisa menghubungi API. Pastikan server berjalan.</p>
+  </div>
+
+  <footer class="footer">
+    <span class="footer__dot" id="status-dot"></span>
+    <span id="status-text">Menghubungkan ke API…</span>
+  </footer>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
