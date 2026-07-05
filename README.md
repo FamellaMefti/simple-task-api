@@ -1,7 +1,5 @@
-# Simple Task API (Python / Flask)
-
 Aplikasi REST API sederhana (Python + Flask) untuk mengelola daftar task (to-do list).
-Proyek ini dibuat untuk **Tugas Praktikum Terintegrasi: Docker, Container Orchestration, dan CI/CD**.
+Proyek ini dibuat untuk Tugas Praktikum Terintegrasi: Docker, Container Orchestration, dan CI/CD.
 
 ## Struktur Folder
 
@@ -84,7 +82,3 @@ Setiap push/pull request ke branch `main` akan menjalankan pipeline GitHub Actio
 3. Menjalankan automated test (`pytest`)
 4. Build Docker image
 
-## Catatan
-
-Data task disimpan secara in-memory (bukan database persisten) — cukup untuk tujuan
-pembelajaran integrasi Docker, Compose, dan CI/CD sesuai fokus tugas praktikum ini.
