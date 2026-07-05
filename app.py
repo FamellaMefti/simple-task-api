@@ -42,15 +42,15 @@ def create_app():
         return jsonify(task), 200
 
     @app.post("/tasks")
-    def create_task():
-        data = request.get_json(silent=True) or {}
-        title = data.get("title")
-        if not title or not isinstance(title, str) or not title.strip():
-            return jsonify(error='Field "title" wajib diisi'), 400
-        new_task = {"id": state["next_id"], "title": title.strip(), "done": False}
-        state["next_id"] += 1
-        tasks.append(new_task)
-        return jsonify(new_task), 201
+def create_task():
+    data = request.get_json(silent=True) or {}
+    title = data.get("title")
+    # if not title or not isinstance(title, str) or not title.strip():
+    #     return jsonify(error='Field "title" wajib diisi'), 400
+    new_task = {"id": state["next_id"], "title": title, "done": False}
+    state["next_id"] += 1
+    tasks.append(new_task)
+    return jsonify(new_task), 201
 
     @app.put("/tasks/<int:task_id>")
     def update_task(task_id):
